@@ -24,3 +24,26 @@ class APIconnection(object):
         get event loop from asyncio
         """
         return asyncio.get_event_loop()
+
+    async def __get(self, url: str, allow_redirects: bool = True):
+        """
+        async get
+        """
+        r = await self.loop.run_in_executor(None, requests.get, url)
+        r.raise_for_status()
+        j = r.json()
+        rstatus: str = j["status"]
+        rdata = j["data"] if "data" in j else None
+        return (rstatus, rdata)
+
+    async def __post(self, url: str, data: Dict[str, Any], header: Optional[dict] = None, allow_redirects: bool = True):
+        """
+        async post
+        """
+        jdata = json.dumps(data)
+        r = await self.loop.run_in_executor(None, requests.post, url, jdata, header)
+        r.raise_for_status()
+        j = r.json()
+        rstatus: str = j["status"]
+        rdata = j["data"] if "data" in j else None
+        return (rstatus, rdata)
