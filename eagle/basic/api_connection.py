@@ -105,3 +105,125 @@ class APIconnection(object):
         url = self.__url_converter("/folder/listRecent")
         s, d = await self.__get(url)
         return d
+
+    # -------------------- item
+    async def item_addFromURL(self, url: str, name: str, website: Optional[str], tags: List[str] = [], annotation: Optional[str] = None, modificationTime: Optional[int] = None, folderId: Optional[str] = None, headers: Optional[Dict[str, Any]] = None):
+        data = {
+            "url": url,
+            "name": name,
+            "website": website,
+            "tags": tags,
+            "annotation": annotation,
+            "modificationTime": modificationTime,
+            "folderId": folderId,
+            "headers": headers,
+        }
+        _url = self.__url_converter("/item/addFromURL")
+        s, d = await self.__post(_url, data)
+        return s == "success"
+
+    async def item_addFromURLs(self, items: Dict[str, Union[str, List[str], Dict[str, Any], int, None]], folderId: Optional[str] = None):
+        url = self.__url_converter("/item/addFromURLs")
+        data = {
+            "items": items,
+            "folderId": folderId
+        }
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_addFromPath(self, path: str, name: str, website: Optional[str], tags: List[str] = [], annotation: Optional[str] = None, folderId: Optional[str] = None):
+        url = self.__url_converter("/item/addFromPath")
+        data = {
+            "path": path,
+            "name": name,
+            "website": website,
+            "tags": tags,
+            "annotation": annotation,
+            "folderId": folderId,
+        }
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_addFromPaths(self, items: Dict[str, Union[str, List[str], None]], folderId: Optional[str] = None):
+        url = self.__url_converter("/item/addFromPaths")
+        data = {
+            "items": items,
+            "folderId": folderId
+        }
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_addBookmark(self, url: str, name: str, base64: str, tags: List[str] = [], modificationTime: Optional[int] = None, folderId: Optional[str] = None):
+        data = {
+            "url": url,
+            "name": name,
+            "base64": base64,
+            "tags": tags,
+            "modificationTime": modificationTime,
+            "folderId": folderId,
+        }
+        _url = self.__url_converter("/item/addBookmark")
+        s, d = await self.__post(_url, data)
+        return s == "success"
+
+    async def item_info(self, id: str):
+        queries = {"id": id}
+        url = self.__url_converter("/item/info", queries=queries)
+        s, d = await self.__get(url)
+        return d
+
+    async def item_thumbnail(self, id: str):
+        queries = {"id": id}
+        url = self.__url_converter("/item/thumbnail", queries=queries)
+        s, d = await self.__get(url)
+        return d
+
+    async def item_list(self, limit: int = 200, orderBy: Optional[str] = None, keyword: Optional[str] = None, ext: Optional[str] = None, tags: List[str] = [], folders: List[str] = []):
+        queries = {
+            "limit": limit,
+            "orderBy": orderBy,
+            "keyowrd": keyword,
+            "ext": ext,
+            "tags": tags,
+            "folders": folders
+
+        }
+        url = self.__url_converter("/item/list", queries=queries)
+        s, d = await self.__get(url)
+        return d
+
+    async def item_moveToTrash(self, itemIds: List[str]):
+        data = {
+            "itemIds": itemIds
+        }
+        url = self.__url_converter("/item/moveToTrash")
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_refreshPalette(self, id: str):
+        data = {
+            "id": id
+        }
+        url = self.__url_converter("/item/refreshPalette")
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_refreshThumbnail(self, id: str):
+        data = {
+            "id": id
+        }
+        url = self.__url_converter("/item/refreshThumbnail")
+        s, d = await self.__post(url, data)
+        return s == "success"
+
+    async def item_update(self, id: str, tags: Optional[List[str]] = None, annotation: Optional[str] = None, url: Optional[str] = None, star: Optional[int] = None):
+        data = {
+            "id": id,
+            "tags": tags,
+            "annotation": annotation,
+            "url": url,
+            "star": star,
+        }
+        _url = self.__url_converter("/item/update")
+        s, d = await self.__post(_url, data)
+        return s == "success"
