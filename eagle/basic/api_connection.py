@@ -47,3 +47,15 @@ class APIconnection(object):
         rstatus: str = j["status"]
         rdata = j["data"] if "data" in j else None
         return (rstatus, rdata)
+
+    def __url_converter(self, path: str, queries: Dict[str, Any] = {}):
+        """
+        convert url to Eagle API
+        """
+        for k, v in queries:
+            if isinstance(v, list):
+                v = ",".join(v)
+                queries[k] = v
+        query = "&".join([f"{k}={v}" for k, v in queries.items()]) if len(
+            queries) > 0 else None
+        return f"{self.SERVER_URL}/{path}?{query if query else ''}"
