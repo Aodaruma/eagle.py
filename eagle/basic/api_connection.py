@@ -17,3 +17,10 @@ class APIconnection(object):
         init
         """
         pass
+
+    @property
+    def loop(self):
+        """
+        get event loop from asyncio
+        """
+        return asyncio.get_event_loop()
