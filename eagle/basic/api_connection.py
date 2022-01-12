@@ -65,3 +65,43 @@ class APIconnection(object):
         url = self.__url_converter("/application/info")
         s, d = await self.__get(url)
         return d
+
+    # -------------------- folder
+    async def folder_create(self, folderName: str, parent: Optional[str] = None):
+        url = self.__url_converter("/folder/create")
+        data = {
+            "folderName": folderName,
+            "parent": parent,
+        }
+        s, d = await self.__post(url, data)
+        return d
+
+    async def folder_rename(self, folderId: str, folderName: str):
+        url = self.__url_converter("/folder/rename")
+        data = {
+            "folderId": folderId,
+            "folderName": folderName,
+        }
+        s, d = await self.__post(url, data)
+        return d
+
+    async def folder_update(self, folderId: str, newName: str, newDescription: str, newColor: str):
+        url = self.__url_converter("/folder/update")
+        data = {
+            "folderId": folderId,
+            "newName": newName,
+            "newDescription": newDescription,
+            "newColor": newColor,
+        }
+        s, d = await self.__post(url, data)
+        return d
+
+    async def folder_list(self):
+        url = self.__url_converter("/folder/list")
+        s, d = await self.__get(url)
+        return d
+
+    async def folder_listRecent(self):
+        url = self.__url_converter("/folder/listRecent")
+        s, d = await self.__get(url)
+        return d
