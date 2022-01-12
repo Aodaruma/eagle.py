@@ -59,3 +59,9 @@ class APIconnection(object):
         query = "&".join([f"{k}={v}" for k, v in queries.items()]) if len(
             queries) > 0 else None
         return f"{self.SERVER_URL}/{path}?{query if query else ''}"
+
+    # -------------------- application
+    async def application_info(self):
+        url = self.__url_converter("/application/info")
+        s, d = await self.__get(url)
+        return d
