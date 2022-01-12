@@ -227,3 +227,23 @@ class APIconnection(object):
         _url = self.__url_converter("/item/update")
         s, d = await self.__post(_url, data)
         return s == "success"
+
+    # -------------------- library
+
+    async def library_info(self):
+        url = self.__url_converter("/library/info")
+        s, d = await self.__get(url)
+        return d
+
+    async def library_history(self):
+        url = self.__url_converter("/library/history")
+        s, d = await self.__get(url)
+        return d
+
+    async def library_switch(self, libraryPath: str):
+        data = {
+            "libraryPath": libraryPath
+        }
+        url = self.__url_converter("/library/history")
+        s, d = await self.__post(url, data)
+        return s == "success"
