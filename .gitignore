@@ -1,0 +1,9 @@
+# ignore private pipenv files
+Pipfile.lock
+.venv
+
+# ignore vscode settings
+.vscode
+
+# ignore .DS_Store
+.DS_Store
