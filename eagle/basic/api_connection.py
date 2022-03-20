@@ -106,11 +106,16 @@ class APIconnection(object):
         return f"{self.SERVER_URL}/{path}?{query if query else ''}"
 
     # -------------------- application
-    async def application_info(self):
+    async def application_info(self) -> Dict[str, Union[int, str]]:
         """
         Get detailed information on the Eagle App currently running.
         In most cases, this could be used to determine whether certain functions are available on the user's device.
         https://api.eagle.cool/application/info
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/application/info")
         s, d = await self.__get(url)
