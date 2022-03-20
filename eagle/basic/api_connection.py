@@ -22,6 +22,11 @@ class APIconnection(object):
     def loop(self):
         """
         get event loop from asyncio
+
+        Returns
+        -------
+        loop: asyncio.events.AbstractEventLoops
+            event loop
         """
         return asyncio.get_event_loop()
 
