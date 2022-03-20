@@ -429,7 +429,7 @@ class APIconnection(object):
         """
         Move items to trash.
         https://api.eagle.cool/item/api-item-movetotrash
-        ### Parameters
+        # Parameters
         `itemIds`: Required
         """
         data = {
