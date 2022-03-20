@@ -2,4 +2,9 @@ class Library(object):
     """
     docstring
     """
-    pass
+
+    def __init__(self, name: str, path: str):
+        """
+        docstring
+        """
+        pass
