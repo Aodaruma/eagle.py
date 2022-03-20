@@ -275,10 +275,10 @@ class APIconnection(object):
         """
         Add multiple images from URLs to Eagle App.
         https://api.eagle.cool/item/add-from-urls
-        ### Parameters
+        # Parameters
         `items`: The array object made up of multiple items (See the description below)
         `folderId`: If the parameter is defined, images will be added to the corresponding folder.
-        #### Description of the Item parameter:
+        # Description of the Item parameter:
         `url`: Required, the URL of the image to be added. Supports `http`, `https`, `base64`
         `name`: Required，The name of the image to be added.
         `website`: The Address of the source of the image
