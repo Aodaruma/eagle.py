@@ -504,7 +504,10 @@ class APIconnection(object):
         """
         url = self.__url_converter("/library/info")
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def library_history(self):
         """
