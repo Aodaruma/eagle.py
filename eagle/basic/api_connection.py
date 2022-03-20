@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 import json
 import requests
 
@@ -25,9 +25,21 @@ class APIconnection(object):
         """
         return asyncio.get_event_loop()
 
-    async def __get(self, url: str, allow_redirects: bool = True):
+    async def __get(self, url: str, allow_redirects: bool = True) -> Tuple[str, Any]:
         """
         async get
+
+        Parameters
+        ----------
+        url : str
+            url
+        allow_redirects : bool, optional
+            whether following redirects, by default True
+
+        Returns
+        -------
+        Tuple[str, Any] :
+            (status, data)
         """
         r = await self.loop.run_in_executor(None, requests.get, url)
         r.raise_for_status()
