@@ -48,9 +48,25 @@ class APIconnection(object):
         rdata = j["data"] if "data" in j else None
         return (rstatus, rdata)
 
-    async def __post(self, url: str, data: Dict[str, Any], header: Optional[dict] = None, allow_redirects: bool = True):
+    async def __post(self, url: str, data: Dict[str, Any], header: Optional[dict] = None, allow_redirects: bool = True) -> Tuple[str, Any]:
         """
         async post
+
+        Parameters
+        ----------
+        url : str
+            url
+        data : Dict[str, Any]
+            data
+        header : Optional[dict], optional
+            header, by default None
+        allow_redirects : bool, optional
+            whether following redirects, by default True
+
+        Returns
+        -------
+        Tuple[str, Any] : 
+            (status, data)
         """
         jdata = json.dumps(data)
         r = await self.loop.run_in_executor(None, requests.post, url, jdata, header)
