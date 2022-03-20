@@ -459,7 +459,7 @@ class APIconnection(object):
         Re-generate the thumbnail of the file used to display in the List.
         When changes to the original file were made, you can call this function to re-generate the thumbnail, the color analysis will also be made.
         https://api.eagle.cool/item/refresh-thumbnail
-        ### Parameters
+        # Parameters
         `id`: The item's ID
         """
         data = {
