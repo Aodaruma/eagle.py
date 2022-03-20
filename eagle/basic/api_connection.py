@@ -154,9 +154,14 @@ class APIconnection(object):
         """
         Rename the specified folder.
         https://api.eagle.cool/folder/rename
-        ### Parameters
+        # Parameters
         `folderId`: The folder's ID
         `folderName`: The new name of the folder
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/folder/rename")
         data = {
@@ -164,7 +169,10 @@ class APIconnection(object):
             "folderName": folderName,
         }
         s, d = await self.__post(url, data)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def folder_update(self, folderId: str, newName: str, newDescription: str, newColor: str):
         """
