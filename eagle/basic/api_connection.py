@@ -401,7 +401,7 @@ class APIconnection(object):
         """
         Get items that match the filter condition.
         https://api.eagle.cool/item/list
-        ### Parameters
+        # Parameters
         `limit`: The number of items to be displayed. the default number is `200`
         `orderBy`: The sorting order. `CREATEDATE`, `FILESIZE`, `NAME`, `RESOLUTION`, add a minus sign for descending order: `-FILESIZE`
         `keyowrd`: Filter by the keyword
@@ -420,7 +420,10 @@ class APIconnection(object):
         }
         url = self.__url_converter("/item/list", queries=queries)
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def item_moveToTrash(self, itemIds: List[str]):
         """
