@@ -525,7 +525,7 @@ class APIconnection(object):
         """
         Switch the library currently opened by Eagle.
         https://api.eagle.cool/library/switch
-        ### Parameters
+        # Parameters
         `libraryPath`: The path of the library
         """
         data = {
