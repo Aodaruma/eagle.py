@@ -386,13 +386,16 @@ class APIconnection(object):
         Get the path of the thumbnail of the file specified.
         If you would like to get a batch of thumbnail paths, the combination of `Library path` + `Object ID` is recommended.
         https://api.eagle.cool/item/thumbnail
-        ### Parameters
+        # Parameters
         `id`: ID of the file
         """
         queries = {"id": id}
         url = self.__url_converter("/item/thumbnail", queries=queries)
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def item_list(self, limit: int = 200, orderBy: Optional[str] = None, keyword: Optional[str] = None, ext: Optional[str] = None, tags: List[str] = [], folders: List[str] = []):
         """
