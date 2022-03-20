@@ -206,10 +206,18 @@ class APIconnection(object):
         """
         Get the list of folders of the current library.
         https://api.eagle.cool/folder/list
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/folder/list")
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def folder_listRecent(self):
         """
