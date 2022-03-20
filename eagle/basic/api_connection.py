@@ -300,7 +300,7 @@ class APIconnection(object):
         Add a local file to Eagle App.
         If you intend to add multiple items in a row, we suggest you use `/api/item/addFromPaths` 
         https://api.eagle.cool/item/add-from-path
-        ### Parameters
+        # Parameters
         `path`: Required, the path of the local file.
         `name`: Required, the name of the image to be added.
         `website`: The Address of the source of the image
