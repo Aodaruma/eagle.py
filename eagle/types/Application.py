@@ -63,3 +63,17 @@ class Application(object):
         if not self._prereleaseVersion:
             self._api.loop.run_until_complete(self.get_info())
         return self._prereleaseVersion
+
+    @cached_property
+    def build_version(self):
+        """
+        returns the build version of Eagle App
+
+        Returns
+        -------
+        str
+            the build version of Eagle App
+        """
+        if not self._buildVersion:
+            self._api.loop.run_until_complete(self.get_info())
+        return self._buildVersion
