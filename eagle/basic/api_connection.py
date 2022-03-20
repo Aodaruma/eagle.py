@@ -444,7 +444,7 @@ class APIconnection(object):
         Re-analysis the color of the file.
         When changes to the original file were made, you can call this function to refresh the Color Analysis. 
         https://api.eagle.cool/item/refresh-palette
-        ### Parameters
+        # Parameters
         `id`: The item's ID
         """
         data = {
