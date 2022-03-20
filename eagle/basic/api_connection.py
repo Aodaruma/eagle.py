@@ -346,7 +346,7 @@ class APIconnection(object):
         """
         Save the link in the URL form to Eagle App.
         https://api.eagle.cool/item/add-bookmark
-        ### Parameters
+        # Parameters
         `url`: Required, the link of the image to be saved. Supports `http`, `https`, `base64` 
         `name`: Required, the name of the image to be added.
         `base64`: The thumbnail of the bookmark. Must be in base64 format.
