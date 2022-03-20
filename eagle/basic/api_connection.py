@@ -370,13 +370,16 @@ class APIconnection(object):
         """
         Get Properties of the specified file, including the file name, tags, categorizations, folders, dimensions, etc.
         https://api.eagle.cool/item/info
-        ### Parameters
+        # Parameters
         `id`: ID of the file
         """
         queries = {"id": id}
         url = self.__url_converter("/item/info", queries=queries)
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def item_thumbnail(self, id: str):
         """
