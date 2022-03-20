@@ -223,10 +223,18 @@ class APIconnection(object):
         """
         Get the list of folders recently used by the user.
         https://api.eagle.cool/folder/list-recent
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/folder/listRecent")
         s, d = await self.__get(url)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     # -------------------- item
     async def item_addFromURL(self, url: str, name: str, website: Optional[str], tags: List[str] = [], annotation: Optional[str] = None, modificationTime: Optional[int] = None, folderId: Optional[str] = None, headers: Optional[Dict[str, Any]] = None):
