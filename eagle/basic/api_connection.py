@@ -242,7 +242,7 @@ class APIconnection(object):
         Add an image from an address to Eagle App.
         If you intend to add multiple items in a row, we suggest you use `/api/item/addFromURLs`.
         https://api.eagle.cool/item/add-from-url
-        ### Parameters
+        # Parameters
         `url`: Required, the URL of the image to be added. Supports `http`, `https`, `base64`
         `name`: Required，The name of the image to be added.
         `website`: The Address of the source of the image
@@ -251,6 +251,11 @@ class APIconnection(object):
         `modificationTime`: The creation date of the image. The parameter can be used to alter the image's sorting order in Eagle. 
         `folderId`: If this parameter is defined, the image will be added to the corresponding folder.
         `headers`: Optional, customize the HTTP headers properties, this could be used to circumvent the security of certain websites.
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         data = {
             "url": url,
