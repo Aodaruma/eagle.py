@@ -130,9 +130,14 @@ class APIconnection(object):
         Create a folder.
         The created folder will be put at the bottom of the folder list of the current library.
         https://api.eagle.cool/folder/create
-        ### Parameters
+        # Parameters
         `folderName`: The name of the Folder
         `parent`: ID of the parent folder
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/folder/create")
         data = {
