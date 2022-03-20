@@ -105,3 +105,9 @@ class Application(object):
         if not self._platform:
             self._api.loop.run_until_complete(self.get_info())
         return self._platform
+
+    async def get_current_library(self) -> Library:
+        """
+        docstring
+        """
+        d = await self._api.library_info()
