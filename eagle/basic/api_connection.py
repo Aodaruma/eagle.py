@@ -178,11 +178,16 @@ class APIconnection(object):
         """
         Update the specified folder.
         https://api.eagle.cool/folder/update
-        ### Parameters
+        # Parameters
         `folderId`: The folder's ID
         `newName`: The new name of the folder
         `newDescription`: The new description of the folder
         `newColor`:"red","orange","green","yellow","aqua","blue","purple","pink"
+
+        Returns
+        -------
+        Dict[str, Union[int, str]]
+            {key, value}
         """
         url = self.__url_converter("/folder/update")
         data = {
@@ -192,7 +197,10 @@ class APIconnection(object):
             "newColor": newColor,
         }
         s, d = await self.__post(url, data)
-        return d
+        if isinstance(d, dict):
+            return d
+        else:
+            raise TypeError("d from __get is not Dict:", type(d))
 
     async def folder_list(self):
         """
