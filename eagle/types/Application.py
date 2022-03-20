@@ -111,3 +111,12 @@ class Application(object):
         docstring
         """
         d = await self._api.library_info()
+
+    @cached_property
+    def library(self):
+        """
+        docstring
+        """
+        if not self._library:
+            self._api.loop.run_until_complete(self.get_info())
+        return self._library
