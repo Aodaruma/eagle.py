@@ -324,10 +324,10 @@ class APIconnection(object):
         """
         Add multiple local files to Eagle App.
         https://api.eagle.cool/item/add-from-paths
-        ### Parameters
+        # Parameters
         `items`: The array object made up of multiple items (See the description below)
         `folderId`: If the parameter is defined, images will be added to the corresponding folder.
-        #### Description of the Item parameter:
+        # Description of the Item parameter:
         `path`: Required, the path of the local file.
         `name`: Required, the name of the image to be added.
         `website`: The Address of the source of the image
