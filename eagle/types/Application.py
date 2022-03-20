@@ -77,3 +77,17 @@ class Application(object):
         if not self._buildVersion:
             self._api.loop.run_until_complete(self.get_info())
         return self._buildVersion
+
+    @cached_property
+    def exec_path(self):
+        """
+        returns the exec path of Eagle App
+
+        Returns
+        -------
+        str
+            the exec path of Eagle App
+        """
+        if not self._execPath:
+            self._api.loop.run_until_complete(self.get_info())
+        return self._execPath
