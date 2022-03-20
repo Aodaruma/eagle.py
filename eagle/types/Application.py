@@ -35,3 +35,17 @@ class Application(object):
         self._buildVersion = d["buildVersion"]
         self._execPath = d["execPath"]
         self._platform = d["platform"]
+
+    @cached_property
+    def version(self):
+        """
+        returns the version of Eagle App
+
+        Returns
+        -------
+        str
+            the version of Eagle App
+        """
+        if not self._version:
+            self._api.loop.run_until_complete(self.get_info())
+        return self._version
