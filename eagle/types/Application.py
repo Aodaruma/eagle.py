@@ -1,5 +1,7 @@
+from functools import cache
+
 from eagle.basic.api_connection import APIconnection
-from eagle.basic.cached_property import cached_property
+# from eagle.basic.cached_property import cached_property
 from eagle.types.Library import Library
 
 
@@ -36,7 +38,8 @@ class Application(object):
         self._execPath = d["execPath"]
         self._platform = d["platform"]
 
-    @cached_property
+    @property
+    @cache
     def version(self):
         """
         returns the version of Eagle App
@@ -50,7 +53,8 @@ class Application(object):
             self._api.loop.run_until_complete(self.get_info())
         return self._version
 
-    @cached_property
+    @property
+    @cache
     def prerelease_version(self):
         """
         returns the prerelease version of Eagle App
@@ -64,7 +68,8 @@ class Application(object):
             self._api.loop.run_until_complete(self.get_info())
         return self._prereleaseVersion
 
-    @cached_property
+    @property
+    @cache
     def build_version(self):
         """
         returns the build version of Eagle App
@@ -78,7 +83,8 @@ class Application(object):
             self._api.loop.run_until_complete(self.get_info())
         return self._buildVersion
 
-    @cached_property
+    @property
+    @cache
     def exec_path(self):
         """
         returns the exec path of Eagle App
@@ -92,7 +98,8 @@ class Application(object):
             self._api.loop.run_until_complete(self.get_info())
         return self._execPath
 
-    @cached_property
+    @property
+    @cache
     def platform(self):
         """
         returns the platform of Eagle App
@@ -111,8 +118,10 @@ class Application(object):
         docstring
         """
         d = await self._api.library_info()
+        return Library(self._api, d["folders"], d["smartFolders"], d["quickAccess"], d["tagGroups"], d["modificationTime"], d["applicationVersion"])
 
-    @cached_property
+    @property
+    @cache
     def library(self):
         """
         docstring
