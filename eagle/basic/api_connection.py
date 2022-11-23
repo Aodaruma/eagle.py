@@ -244,7 +244,7 @@ class APIconnection(object):
         https://api.eagle.cool/item/add-from-url
         # Parameters
         `url`: Required, the URL of the image to be added. Supports `http`, `https`, `base64`
-        `name`: Required，The name of the image to be added.
+        `name`: Required, The name of the image to be added.
         `website`: The Address of the source of the image
         `tags`: Tags for the image.
         `annotation`: The annotation for the image.
@@ -280,7 +280,7 @@ class APIconnection(object):
         `folderId`: If the parameter is defined, images will be added to the corresponding folder.
         # Description of the Item parameter:
         `url`: Required, the URL of the image to be added. Supports `http`, `https`, `base64`
-        `name`: Required，The name of the image to be added.
+        `name`: Required, The name of the image to be added.
         `website`: The Address of the source of the image
         `tags`: Tags for the image.
         `annotation`: The annotation for the image.
